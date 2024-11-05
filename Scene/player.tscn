@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://drx2b0pyk8g5e"]
+[gd_scene load_steps=11 format=3 uid="uid://drx2b0pyk8g5e"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_yxyvx"]
 [ext_resource type="Texture2D" uid="uid://chnpopg8ma4iu" path="res://Assets/Ship.png" id="2_ef6e6"]
+[ext_resource type="Texture2D" uid="uid://dfba12bkgfqgv" path="res://Assets/FullDiper.png" id="2_poxj1"]
+[ext_resource type="Texture2D" uid="uid://bh6gu30cbfsm8" path="res://Assets/EmptyDiper.png" id="4_luw72"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ta3o2"]
 atlas = ExtResource("2_ef6e6")
@@ -46,6 +48,24 @@ size = Vector2(33, 11)
 collision_layer = 2
 script = ExtResource("1_yxyvx")
 
+[node name="FullDyper1" type="Sprite2D" parent="."]
+position = Vector2(-10, 8)
+texture = ExtResource("2_poxj1")
+region_enabled = true
+region_rect = Rect2(9, 0, 9, 8)
+
+[node name="FullDyper2" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("2_poxj1")
+region_enabled = true
+region_rect = Rect2(9, 0, 9, 8)
+
+[node name="FullDyper3" type="Sprite2D" parent="."]
+position = Vector2(10, 8)
+texture = ExtResource("2_poxj1")
+region_enabled = true
+region_rect = Rect2(9, 0, 9, 8)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_uwbjd")
 animation = &"idle"
@@ -55,3 +75,21 @@ frame_progress = 0.475405
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_id27r")
+
+[node name="EmptyDyper1" type="Sprite2D" parent="."]
+position = Vector2(-13, 10)
+texture = ExtResource("4_luw72")
+region_enabled = true
+region_rect = Rect2(11, 0, 11, 7)
+
+[node name="EmptyDyper2" type="Sprite2D" parent="."]
+position = Vector2(-3, 10)
+texture = ExtResource("4_luw72")
+region_enabled = true
+region_rect = Rect2(11, 0, 11, 7)
+
+[node name="EmptyDyper3" type="Sprite2D" parent="."]
+position = Vector2(7, 10)
+texture = ExtResource("4_luw72")
+region_enabled = true
+region_rect = Rect2(11, 0, 11, 7)
