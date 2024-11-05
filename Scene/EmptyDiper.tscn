@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://dldbktj06sjpn"]
+
+[ext_resource type="Texture2D" uid="uid://bh6gu30cbfsm8" path="res://Assets/EmptyDiper.png" id="1_faf3h"]
+[ext_resource type="Script" path="res://Scripts/EmptyDiper.gd" id="1_g54m8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puihe"]
+atlas = ExtResource("1_faf3h")
+region = Rect2(0, 0, 11, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_407bi"]
+atlas = ExtResource("1_faf3h")
+region = Rect2(11, 0, 11, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjsox"]
+atlas = ExtResource("1_faf3h")
+region = Rect2(22, 0, 11, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qietl"]
+atlas = ExtResource("1_faf3h")
+region = Rect2(0, 7, 11, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kcatk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puihe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_407bi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjsox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qietl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_leuss"]
+radius = 4.0
+
+[node name="EmptyDiper" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_g54m8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kcatk")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.178158
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_leuss")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
