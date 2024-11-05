@@ -18,18 +18,16 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
-		
-		#if scale.x != direction:
-		#	scale.x = direction
-		#	print("scale.x ",direction)
 			
 		velocity.x = direction * SPEED
 	else:		
-		#print("else direction ",direction)
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 	move_and_slide()
 
+	print("Velocity: ", velocity.x)
+	if velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+	elif velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
 
-#func _process(delta: float) -> void:
-#	print("Scale X: ", scale.x, " Scale Y: ", scale.y)
