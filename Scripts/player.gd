@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 
-	print("Velocity: ", velocity.x)
 	if velocity.x > 0:
 		$AnimatedSprite2D.flip_h = false
 	elif velocity.x < 0:
@@ -38,5 +37,6 @@ func _physics_process(delta: float) -> void:
 		
 func shoot() -> void:
 	var b = Bullet.instantiate()
+	b.custom_init($AnimatedSprite2D.flip_h)
 	owner.add_child(b)
 	b.global_transform = $Muzzle.global_transform
