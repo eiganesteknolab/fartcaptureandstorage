@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://bs1uuivbvobkg"]
+
+[ext_resource type="Texture2D" uid="uid://c52fdjolycenn" path="res://Assets/Cow.png" id="1_sao73"]
+[ext_resource type="Script" path="res://Scripts/cow.gd" id="1_vx6dw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u00co"]
+atlas = ExtResource("1_sao73")
+region = Rect2(0, 0, 24, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj6l0"]
+atlas = ExtResource("1_sao73")
+region = Rect2(24, 0, 24, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn7fo"]
+atlas = ExtResource("1_sao73")
+region = Rect2(48, 0, 24, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui217"]
+atlas = ExtResource("1_sao73")
+region = Rect2(0, 14, 24, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b3mn"]
+atlas = ExtResource("1_sao73")
+region = Rect2(24, 14, 24, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6psi"]
+atlas = ExtResource("1_sao73")
+region = Rect2(48, 14, 24, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70kss"]
+atlas = ExtResource("1_sao73")
+region = Rect2(0, 28, 24, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n2is4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u00co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj6l0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn7fo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui217")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b3mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6psi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70kss")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jeq5"]
+radius = 7.0
+
+[node name="Cow" type="Area2D" groups=["cow"]]
+script = ExtResource("1_vx6dw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n2is4")
+autoplay = "default"
+frame = 4
+frame_progress = 0.73355
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_7jeq5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

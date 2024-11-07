@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv3kjwjdv2nj6"]
+[gd_scene load_steps=7 format=3 uid="uid://bv3kjwjdv2nj6"]
 
 [ext_resource type="PackedScene" uid="uid://drx2b0pyk8g5e" path="res://Scene/player.tscn" id="1_hwuht"]
 [ext_resource type="Texture2D" uid="uid://bypjxfuvdpfuc" path="res://Assets/TileMapBasic.png" id="1_pwiyf"]
 [ext_resource type="PackedScene" uid="uid://dldbktj06sjpn" path="res://Scene/EmptyDiper.tscn" id="3_dxnhx"]
+[ext_resource type="PackedScene" uid="uid://bs1uuivbvobkg" path="res://Scene/cow.tscn" id="4_tc6ii"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_37j6f"]
 texture = ExtResource("1_pwiyf")
@@ -69,3 +70,9 @@ position = Vector2(71, 26)
 
 [node name="EmptyDiper2" parent="." instance=ExtResource("3_dxnhx")]
 position = Vector2(162, 27)
+
+[node name="Cow" parent="." instance=ExtResource("4_tc6ii")]
+position = Vector2(282, 29)
+
+[node name="Cow2" parent="." instance=ExtResource("4_tc6ii")]
+position = Vector2(318, 29)

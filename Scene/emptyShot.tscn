@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmbao"]
 radius = 3.0
 
-[node name="emptyShot" type="Area2D"]
+[node name="emptyShot" type="Area2D" groups=["emptyDiper"]]
 script = ExtResource("1_q2d43")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
