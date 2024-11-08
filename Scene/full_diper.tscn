@@ -62,6 +62,7 @@ shape = SubResource("CircleShape2D_vmxgi")
 autostart = true
 
 [node name="toch4Timer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
