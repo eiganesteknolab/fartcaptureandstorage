@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfj2ch1dewk34"]
+[gd_scene load_steps=10 format=3 uid="uid://dfj2ch1dewk34"]
 
 [ext_resource type="Texture2D" uid="uid://dfba12bkgfqgv" path="res://Assets/FullDiper.png" id="1_1cdfe"]
 [ext_resource type="Script" path="res://Scripts/full_diper.gd" id="1_q0w3q"]
+[ext_resource type="PackedScene" uid="uid://b5m053qkdpat1" path="res://Scene/fart.tscn" id="2_ywm2s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ddp3v"]
 atlas = ExtResource("1_1cdfe")
@@ -44,6 +45,7 @@ radius = 4.0
 
 [node name="fullDiper" type="RigidBody2D" groups=["fullDiper"]]
 script = ExtResource("1_q0w3q")
+Fart = ExtResource("2_ywm2s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gcpjr")
@@ -56,4 +58,10 @@ shape = SubResource("CircleShape2D_vmxgi")
 [node name="KillTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="toch4Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
+[connection signal="timeout" from="toch4Timer" to="." method="_on_toch_4_timer_timeout"]

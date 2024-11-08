@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+@export var Fart: PackedScene
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$KillTimer.paused = true
@@ -11,7 +13,17 @@ func _process(delta: float) -> void:
 	pass
 
 func toggleKill():
+	$toch4Timer.paused = true
 	$KillTimer.paused = false
 
 func _on_kill_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_toch_4_timer_timeout() -> void:
+	var b = Fart.instantiate()
+	b.position = $Marker2D.global_position
+	b.rotation = 0
+	get_parent().add_child(b)
+	queue_free()
+	

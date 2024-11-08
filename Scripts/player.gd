@@ -105,6 +105,6 @@ func _on_empty_diper_2_body_entered(body: Node2D) -> void:
 
 func _on_well_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("fullDiper"):
-		print("diper ", body.name, " safe")
+		#print("diper ", body.name, " safe")
 		score = score + 1
 		body.toggleKill()
