@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bv3kjwjdv2nj6"]
+[gd_scene load_steps=11 format=3 uid="uid://bv3kjwjdv2nj6"]
 
 [ext_resource type="PackedScene" uid="uid://drx2b0pyk8g5e" path="res://Scene/player.tscn" id="1_hwuht"]
 [ext_resource type="Texture2D" uid="uid://bypjxfuvdpfuc" path="res://Assets/TileMapBasic.png" id="1_pwiyf"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_ywotm"]
 [ext_resource type="PackedScene" uid="uid://dldbktj06sjpn" path="res://Scene/EmptyDiper.tscn" id="3_dxnhx"]
 [ext_resource type="PackedScene" uid="uid://bs1uuivbvobkg" path="res://Scene/cow.tscn" id="4_tc6ii"]
 [ext_resource type="Script" path="res://Scripts/well_area.gd" id="5_dtngq"]
@@ -47,12 +48,14 @@ tile_size = Vector2i(12, 12)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_37j6f")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0vqj5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ykgk"]
+size = Vector2(1105, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0jnb0"]
 size = Vector2(142, 17)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_ywotm")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_0f2ok")
@@ -66,6 +69,15 @@ position = Vector2(20, 25)
 position = Vector2(-17, -11)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/Camera2D"]
+offset_left = -142.0
+offset_top = -78.0
+offset_right = 138.0
+offset_bottom = -38.0
+bbcode_enabled = true
+text = "[color=red]Ch4 Level[/color]"
+fit_content = true
 
 [node name="EmptyDiper1" parent="." instance=ExtResource("3_dxnhx")]
 position = Vector2(115, 27)
@@ -82,11 +94,12 @@ position = Vector2(282, 29)
 [node name="Cow2" parent="." instance=ExtResource("4_tc6ii")]
 position = Vector2(318, 29)
 
-[node name="Roof" type="Area2D" parent="."]
-position = Vector2(0, -191)
+[node name="Roof" type="Area2D" parent="." groups=["roof"]]
+position = Vector2(0, -219)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Roof"]
-shape = SubResource("WorldBoundaryShape2D_0vqj5")
+position = Vector2(47.5, 0)
+shape = SubResource("RectangleShape2D_7ykgk")
 
 [node name="WellArea" type="Area2D" parent="."]
 script = ExtResource("5_dtngq")
@@ -95,7 +108,9 @@ script = ExtResource("5_dtngq")
 position = Vector2(-72, 182.5)
 shape = SubResource("RectangleShape2D_0jnb0")
 
+[connection signal="ch4levelsValue" from="Player" to="." method="_on_player_ch_4_levels_value"]
 [connection signal="body_entered" from="EmptyDiper1" to="Player" method="_on_empty_diper_1_body_entered"]
 [connection signal="body_entered" from="EmptyDiper0" to="Player" method="_on_empty_diper_0_body_entered"]
 [connection signal="body_entered" from="EmptyDiper2" to="Player" method="_on_empty_diper_2_body_entered"]
+[connection signal="area_entered" from="Roof" to="Player" method="_on_roof_area_entered"]
 [connection signal="body_entered" from="WellArea" to="Player" method="_on_well_area_body_entered"]

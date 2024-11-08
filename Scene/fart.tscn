@@ -27,7 +27,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="fart" type="Area2D"]
+[node name="fart" type="Area2D" groups=["fart"]]
 script = ExtResource("1_v4bot")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

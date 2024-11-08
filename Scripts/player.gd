@@ -13,7 +13,11 @@ var can_jump = true
 var emptyDiperAmmo = 0
 var fullDiperAmmo = 0
 
+var ch4level = 0
+
 var score = 0
+
+signal ch4levelsValue
 
 # Exported variable for the bullet scene
 @export var Bullet: PackedScene
@@ -134,3 +138,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("fullDiper"):
 		body.queue_free()
 		fullDiperAmmo = fullDiperAmmo + 1
+
+
+
+func _on_roof_area_entered(area: Area2D) -> void:
+	print("Body ", area.get_groups(), "Path ", area.get_path())
+	if area.is_in_group("fart"):
+		area.queue_free()
+		ch4level = ch4level + 1
+		emit_signal("ch4levelsValue")
