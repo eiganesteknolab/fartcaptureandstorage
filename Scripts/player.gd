@@ -6,11 +6,13 @@ const JUMP_VELOCITY = -300.0
 const SHOOT_COOLDOWN = 0.2
 const JUMP_COOLDOWN = 0.2
 
-var can_shoot = true
+var can_shoot_empty = true
+var can_shoot_full = true
 var can_jump = true
 
 # Exported variable for the bullet scene
 @export var Bullet: PackedScene
+@export var fullDiper: PackedScene
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -23,15 +25,21 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(JUMP_COOLDOWN).timeout
 		can_jump = true
 		
-	# Check for shooting input
-	if can_shoot and Input.is_joy_button_pressed(0, JOY_BUTTON_A):
-		shoot()
-		can_shoot = false
+	# Check for shooting empty dipers
+	if can_shoot_empty and Input.is_joy_button_pressed(0, JOY_BUTTON_A):
+		shootEmpty()
+		can_shoot_empty = false
 		await get_tree().create_timer(SHOOT_COOLDOWN).timeout
-		can_shoot = true
+		can_shoot_empty = true
+
+	# Check for shooting full dipers
+	if can_shoot_full and Input.is_joy_button_pressed(0, JOY_BUTTON_B):
+		shootFull()
+		can_shoot_full = false
+		await get_tree().create_timer(SHOOT_COOLDOWN).timeout
+		can_shoot_full = true
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
@@ -45,8 +53,14 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 		
-func shoot() -> void:
+func shootEmpty() -> void:
 	var b = Bullet.instantiate()
 	b.custom_init($AnimatedSprite2D.flip_h)
+	owner.add_child(b)
+	b.global_transform = $Muzzle.global_transform
+
+
+func shootFull() -> void:
+	var b = fullDiper.instantiate()
 	owner.add_child(b)
 	b.global_transform = $Muzzle.global_transform

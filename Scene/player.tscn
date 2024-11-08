@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://drx2b0pyk8g5e"]
+[gd_scene load_steps=13 format=3 uid="uid://drx2b0pyk8g5e"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_yxyvx"]
 [ext_resource type="Texture2D" uid="uid://chnpopg8ma4iu" path="res://Assets/Ship.png" id="2_ef6e6"]
 [ext_resource type="Texture2D" uid="uid://dfba12bkgfqgv" path="res://Assets/FullDiper.png" id="2_poxj1"]
 [ext_resource type="PackedScene" uid="uid://dxq4cx1v3i2uo" path="res://Scene/emptyShot.tscn" id="2_wkkpa"]
+[ext_resource type="PackedScene" uid="uid://dfj2ch1dewk34" path="res://Scene/full_diper.tscn" id="3_viyyv"]
 [ext_resource type="Texture2D" uid="uid://bh6gu30cbfsm8" path="res://Assets/EmptyDiper.png" id="4_luw72"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ta3o2"]
@@ -49,6 +50,7 @@ size = Vector2(33, 11)
 collision_layer = 2
 script = ExtResource("1_yxyvx")
 Bullet = ExtResource("2_wkkpa")
+fullDiper = ExtResource("3_viyyv")
 
 [node name="FullDyper1" type="Sprite2D" parent="."]
 position = Vector2(-10, 8)
