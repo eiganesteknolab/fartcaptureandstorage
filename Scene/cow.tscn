@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bs1uuivbvobkg"]
+[gd_scene load_steps=15 format=3 uid="uid://bs1uuivbvobkg"]
 
 [ext_resource type="Texture2D" uid="uid://c52fdjolycenn" path="res://Assets/Cow.png" id="1_sao73"]
 [ext_resource type="Script" path="res://Scripts/cow.gd" id="1_vx6dw"]
+[ext_resource type="PackedScene" uid="uid://b5m053qkdpat1" path="res://Scene/fart.tscn" id="2_3f5fw"]
 [ext_resource type="Texture2D" uid="uid://bh6gu30cbfsm8" path="res://Assets/EmptyDiper.png" id="3_fd08k"]
+[ext_resource type="Script" path="res://Scripts/ch4timer.gd" id="4_nv3ti"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u00co"]
 atlas = ExtResource("1_sao73")
@@ -66,6 +68,7 @@ radius = 7.0
 
 [node name="Cow" type="Area2D" groups=["cow"]]
 script = ExtResource("1_vx6dw")
+Fart = ExtResource("2_3f5fw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_n2is4")
@@ -85,4 +88,13 @@ region_rect = Rect2(0, -0.149252, 11, 7.14925)
 position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_7jeq5")
 
+[node name="ch4Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+script = ExtResource("4_nv3ti")
+
+[node name="FartPoint" type="Marker2D" parent="."]
+position = Vector2(11, -5)
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="ch4Timer" to="." method="_on_ch_4_timer_timeout"]

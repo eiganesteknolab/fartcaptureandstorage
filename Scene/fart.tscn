@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5m053qkdpat1"]
+
+[ext_resource type="Texture2D" uid="uid://effxmn6p0g8b" path="res://Assets/Fart.png" id="1_uwvx5"]
+[ext_resource type="Script" path="res://Scripts/fart.gd" id="1_v4bot"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dole2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj53v"]
+atlas = ExtResource("1_uwvx5")
+region = Rect2(0, 0, 6, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4ule"]
+atlas = ExtResource("1_uwvx5")
+region = Rect2(6, 0, 6, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wffq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj53v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4ule")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="fart" type="Area2D"]
+script = ExtResource("1_v4bot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dole2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1wffq")
+autoplay = "default"
