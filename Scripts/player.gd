@@ -11,6 +11,7 @@ var can_shoot_full = true
 var can_jump = true
 
 var emptyDiperAmmo = 0
+var fullDiperAmmo = 0
 
 var score = 0
 
@@ -38,11 +39,12 @@ func _physics_process(delta: float) -> void:
 		emptyDiperAmmo = emptyDiperAmmo - 1
 
 	# Check for shooting full dipers
-	if can_shoot_full and Input.is_joy_button_pressed(0, JOY_BUTTON_B):
+	if can_shoot_full and Input.is_joy_button_pressed(0, JOY_BUTTON_B) and fullDiperAmmo > 0:
 		shootFull()
 		can_shoot_full = false
 		await get_tree().create_timer(SHOOT_COOLDOWN).timeout
 		can_shoot_full = true
+		fullDiperAmmo = fullDiperAmmo - 1
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("ui_left", "ui_right")
@@ -72,6 +74,23 @@ func _physics_process(delta: float) -> void:
 		$EmptyDyper1.visible = true
 		$EmptyDyper2.visible = true
 		$EmptyDyper3.visible = true
+		
+	if fullDiperAmmo == 0:
+		$FullDyper1.visible = false
+		$FullDyper2.visible = false
+		$FullDyper3.visible = false
+	elif fullDiperAmmo == 1:
+		$FullDyper1.visible = true
+		$FullDyper2.visible = false
+		$FullDyper3.visible = false
+	elif fullDiperAmmo == 2:
+		$FullDyper1.visible = true
+		$FullDyper2.visible = true
+		$FullDyper3.visible = false
+	elif fullDiperAmmo == 3:
+		$FullDyper1.visible = true
+		$FullDyper2.visible = true
+		$FullDyper3.visible = true
 		
 	move_and_slide()
 		
@@ -108,3 +127,10 @@ func _on_well_area_body_entered(body: Node2D) -> void:
 		#print("diper ", body.name, " safe")
 		score = score + 1
 		body.toggleKill()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	#print("Body ", body.get_groups(), "Path ", body.get_path())
+	if body.is_in_group("fullDiper"):
+		body.queue_free()
+		fullDiperAmmo = fullDiperAmmo + 1

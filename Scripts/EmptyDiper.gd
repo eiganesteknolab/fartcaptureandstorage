@@ -5,7 +5,7 @@ func _ready() -> void:
 	$viewTimer.paused = true
 
 func _on_body_entered(_body: Node2D) -> void:
-	print("Empty diaper +1")
+	#print("Empty diaper +1")
 	$viewTimer.paused = false
 	$CollisionShape2D.disabled = true 
 	$AnimatedSprite2D.visible = false

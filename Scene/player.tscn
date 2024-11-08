@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drx2b0pyk8g5e"]
+[gd_scene load_steps=14 format=3 uid="uid://drx2b0pyk8g5e"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_yxyvx"]
 [ext_resource type="Texture2D" uid="uid://chnpopg8ma4iu" path="res://Assets/Ship.png" id="2_ef6e6"]
@@ -45,6 +45,9 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_id27r"]
 size = Vector2(33, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmm34"]
+size = Vector2(5, 12)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -100,3 +103,11 @@ region_rect = Rect2(11, 0, 11, 7)
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(0, 7)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["collector"]]
+position = Vector2(19, 3)
+shape = SubResource("RectangleShape2D_jmm34")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

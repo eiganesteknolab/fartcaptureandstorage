@@ -27,3 +27,10 @@ func _on_toch_4_timer_timeout() -> void:
 	get_parent().add_child(b)
 	queue_free()
 	
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("Body ", body.get_groups(), "Path ", body.get_path())
+	#if body.is_in_group("fullDiper"):
+		#print("diper ", body.name, " safe")
+		#body.toggleAffFullDiper()

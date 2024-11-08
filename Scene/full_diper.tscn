@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfj2ch1dewk34"]
+[gd_scene load_steps=11 format=3 uid="uid://dfj2ch1dewk34"]
 
 [ext_resource type="Texture2D" uid="uid://dfba12bkgfqgv" path="res://Assets/FullDiper.png" id="1_1cdfe"]
 [ext_resource type="Script" path="res://Scripts/full_diper.gd" id="1_q0w3q"]
@@ -43,6 +43,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_vmxgi"]
 radius = 4.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wakea"]
+radius = 5.0
+
 [node name="fullDiper" type="RigidBody2D" groups=["fullDiper"]]
 script = ExtResource("1_q0w3q")
 Fart = ExtResource("2_ywm2s")
@@ -62,6 +65,11 @@ autostart = true
 autostart = true
 
 [node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Area" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_wakea")
 
 [connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]
 [connection signal="timeout" from="toch4Timer" to="." method="_on_toch_4_timer_timeout"]

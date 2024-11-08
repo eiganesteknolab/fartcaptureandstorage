@@ -21,6 +21,7 @@ cow=""
 emptyDiper=""
 player=""
 fullDiper=""
+collector=""
 
 [rendering]
 
