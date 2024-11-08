@@ -42,13 +42,18 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_vmxgi"]
 radius = 4.0
 
-[node name="fullDiper" type="RigidBody2D"]
+[node name="fullDiper" type="RigidBody2D" groups=["fullDiper"]]
 script = ExtResource("1_q0w3q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gcpjr")
 autoplay = "default"
-frame_progress = 0.408869
+frame_progress = 0.787002
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vmxgi")
+
+[node name="KillTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="KillTimer" to="." method="_on_kill_timer_timeout"]

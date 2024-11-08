@@ -10,8 +10,9 @@ var can_shoot_empty = true
 var can_shoot_full = true
 var can_jump = true
 
-
 var emptyDiperAmmo = 0
+
+var score = 0
 
 # Exported variable for the bullet scene
 @export var Bullet: PackedScene
@@ -100,3 +101,10 @@ func _on_empty_diper_0_body_entered(body: Node2D) -> void:
 func _on_empty_diper_2_body_entered(body: Node2D) -> void:
 	if emptyDiperAmmo < 3:
 		emptyDiperAmmo = emptyDiperAmmo + 1
+
+
+func _on_well_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("fullDiper"):
+		print("diper ", body.name, " safe")
+		score = score + 1
+		body.toggleKill()
