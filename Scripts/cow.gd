@@ -8,7 +8,7 @@ func _ready():
 	$fullTimer.paused = true
 
 func _on_area_entered(_area: Area2D) -> void:
-	print("Cow got hit by something")
+	#print("Cow got hit by something")
 	#print(_area.name)
 	#print(_area.get_path())
 	#print(_area.get_groups())
@@ -18,7 +18,7 @@ func _on_area_entered(_area: Area2D) -> void:
 			$ch4Timer.paused = true
 			$fullTimer.paused = false
 			
-		print("Cow got hit by diper")
+		#print("Cow got hit by diper")
 		_area.queue_free()
 
 
