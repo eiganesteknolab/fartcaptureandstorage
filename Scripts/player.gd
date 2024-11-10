@@ -28,14 +28,14 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if can_jump and  Input.is_joy_button_pressed(0, JOY_BUTTON_X):
+	if can_jump and  Input.is_joy_button_pressed(0, JOY_BUTTON_A):
 		velocity.y = JUMP_VELOCITY
 		can_jump = false
 		await get_tree().create_timer(JUMP_COOLDOWN).timeout
 		can_jump = true
 		
 	# Check for shooting empty dipers
-	if can_shoot_empty and Input.is_joy_button_pressed(0, JOY_BUTTON_A) and emptyDiperAmmo > 0:
+	if can_shoot_empty and Input.is_joy_button_pressed(0, JOY_BUTTON_X) and emptyDiperAmmo > 0:
 		shootEmpty()
 		can_shoot_empty = false
 		await get_tree().create_timer(SHOOT_COOLDOWN).timeout
